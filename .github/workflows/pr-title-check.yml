@@ -1,0 +1,16 @@
+name: Check PR title format
+
+on:
+  pull_request:
+    types: [opened, edited, reopened, synchronize]
+
+jobs:
+  check-title:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check PR title starts with "PR-"
+        run: |
+          if [[ ! "${{ github.event.pull_request.title }}" =~ ^PR- ]]; then
+            echo "❌ Pull request title must start with 'PR-'"
+            exit 1
+          fi

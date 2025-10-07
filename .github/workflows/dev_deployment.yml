@@ -1,0 +1,20 @@
+name: Deploy to Dev
+
+on:
+  push:
+    branches:
+      - main  # Trigger when PR merges into main
+
+jobs:
+  deploy-dev:
+    runs-on: ubuntu-latest
+    environment: dev   # 👈 deploys to dev environment
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Simulate deployment
+        run: |
+          echo "🚀 Deploying to DEV environment..."
+          echo "Using DEV_API_KEY=${{ secrets.DEV_API_KEY }}"
